@@ -1,0 +1,113 @@
+{
+  "name": "node-pptx-png",
+  "version": "2.0.0",
+  "description": "Pure-Node high-fidelity PPTX to PNG/WebP/SVG/PDF renderer — no LibreOffice, no headless browser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdruckerfig/node-pptx-png.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sdruckerfig/node-pptx-png/issues"
+  },
+  "homepage": "https://github.com/sdruckerfig/node-pptx-png#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "bin": {
+    "node-pptx-png": "dist/cli.js",
+    "node-pptx-png-mcp": "dist/mcp/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc -p tsconfig.cjs.json && node scripts/postbuild-cjs.mjs",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "corpus": "node scripts/fidelity-corpus.mjs",
+    "fixture": "node scripts/generate-fixture.mjs",
+    "bench": "node scripts/benchmark.mjs",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.dev.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "pptx",
+    "ppt",
+    "powerpoint",
+    "png",
+    "webp",
+    "svg",
+    "pdf",
+    "image",
+    "converter",
+    "render",
+    "thumbnail",
+    "thumbnails",
+    "preview",
+    "openxml",
+    "slides",
+    "presentation",
+    "pptx-to-png",
+    "pptx-to-image",
+    "pptx-to-pdf",
+    "powerpoint-to-image",
+    "serverless",
+    "emf"
+  ],
+  "author": "Steve Drucker",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "fast-xml-parser": "^5.10.1",
+    "jszip": "^3.10.1",
+    "skia-canvas": "^3.0.8"
+  },
+  "peerDependencies": {
+    "sharp": ">=0.32.0"
+  },
+  "peerDependenciesMeta": {
+    "sharp": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.8.0",
+    "prettier": "^3.9.6",
+    "sharp": "^0.35.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0",
+    "vitest": "^4.1.10"
+  }
+}
